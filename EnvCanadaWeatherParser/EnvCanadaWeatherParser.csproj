@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>MarkStrendin.EnvCanadaWeatherParser</RootNamespace>
+    <Authors>Mark Strendin</Authors>
+    <PackageId>MarkStrendin.EnvCanadaWeatherParser</PackageId>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Mark Strendin 2019</Copyright>
+    <PackageProjectUrl>https://github.com/MarkStrendin/EnvCanadaXMLParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MarkStrendin/EnvCanadaXMLParser</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
 </Project>
