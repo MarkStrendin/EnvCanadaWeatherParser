@@ -6,4 +6,14 @@
     <RootNamespace>MarkStrendin.EnvCanadaParserPlayground</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EnvCanadaWeatherParser\EnvCanadaWeatherParser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="example_data.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

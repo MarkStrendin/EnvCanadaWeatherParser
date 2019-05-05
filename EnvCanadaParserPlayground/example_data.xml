@@ -12,6 +12,7 @@ See https://www.canada.ca/en/environment-climate-change/services/weather-general
  <link rel="alternate" hreflang="fr-ca" href="https://www.meteo.gc.ca/rss/city/sk-34_f.xml" type="application/atom+xml"/>
  <author>
  <name>Environment Canada</name>
+   
  <uri>https://www.weather.gc.ca</uri>
  </author>
  <updated>2019-05-04T23:09:43Z</updated>
@@ -19,7 +20,8 @@ See https://www.canada.ca/en/environment-climate-change/services/weather-general
  <logo>https://www.weather.gc.ca/template/gcweb/v4.0.24/assets/wmms-alt.png</logo>
  <icon>https://www.weather.gc.ca/template/gcweb/v4.0.24/assets/favicon.ico</icon>
  <rights>Copyright 2019, Environment Canada</rights>
- <entry>
+ 
+   <entry>
  <title>No watches or warnings in effect, North Battleford</title>
  <link type="text/html" href="https://www.weather.gc.ca/warnings/index_e.html"/>
  <updated>2019-04-08T13:45:00Z</updated>
@@ -27,7 +29,9 @@ See https://www.canada.ca/en/environment-climate-change/services/weather-general
  <category term="Warnings and Watches"/>
  <summary type="html">No watches or warnings in effect.</summary>
  <id>tag:weather.gc.ca,2013-04-16:sk-34_w1:20190408134500</id>
- </entry>
+ 
+   </entry>
+   
  <entry>
  <title>Current Conditions: Partly Cloudy, 7.1&#xB0;C</title>
  <link type="text/html" href="https://www.weather.gc.ca/city/pages/sk-34_metric_e.html"/>
@@ -46,6 +50,7 @@ See https://www.canada.ca/en/environment-climate-change/services/weather-general
 ]]></summary>
  <id>tag:weather.gc.ca,2013-04-16:sk-34_cc:20190504230000</id>
  </entry>
+   
  <entry>
  <title>Saturday night: A few clouds. Low minus 6.</title>
  <link type="text/html" href="https://www.weather.gc.ca/city/pages/sk-34_metric_e.html"/>
