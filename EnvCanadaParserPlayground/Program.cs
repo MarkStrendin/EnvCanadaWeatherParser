@@ -17,8 +17,7 @@ namespace MarkStrendin.EnvCanadaParserPlayground
                 "TestXML003.xml",
                 "TestXML004.xml",
                 "TestXML005.xml",
-                "TestXML006.xml",
-                "TestXML-Warnings-001.xml"
+                "TestXML006.xml"
             };
 
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
@@ -29,14 +28,9 @@ namespace MarkStrendin.EnvCanadaParserPlayground
                 string exampleContent = reader.ReadToEnd();
                 CurrentWeather result = parser.ParseXML(exampleContent);
                 Console.WriteLine(CurrentWeatherToString(result));
-            }
-
-            
+            }            
         }
-
-
-       
-
+        
         private static string CurrentWeatherToString(CurrentWeather currentWeather)
         {
             StringBuilder builder = new StringBuilder();
@@ -47,10 +41,13 @@ namespace MarkStrendin.EnvCanadaParserPlayground
             builder.Append("  \"LastUpdated:\": \"" + currentWeather.LastUpdated.ToString() +"\"\n");
             builder.Append("  \"TemperatureCelsius\": \"" + currentWeather.TemperatureCelsius + "\"\n");
             builder.Append("  \"TemperatureFahrenheit\": \"" + currentWeather.TemperatureFahrenheit + "\"\n");
+            builder.Append("  \"TemperatureKelvin\": \"" + currentWeather.TemperatureKelvin + "\"\n");
             builder.Append("  \"Conditions\": \"" + currentWeather.Conditions +"\"\n");
             builder.Append("  \"Visibility\": \"" + currentWeather.Visibility +"\"\n");
             builder.Append("  \"Pressure\": \"" + currentWeather.Pressure +"\"\n");
-            builder.Append("  \"Humidity\": \"" + currentWeather.Humidity +"\"\n");
+            builder.Append("  \"Humidity\": \"" + currentWeather.Humidity + "\"\n");
+            builder.Append("  \"WindChillCelsius\": \"" + currentWeather.WindChillCelsius + "\"\n");
+            builder.Append("  \"WindChillFahrenheit\": \"" + currentWeather.WindChillFahrenheit + "\"\n");
             builder.Append("  \"DewPointCelsius\": \"" + currentWeather.DewPointCelsius + "\"\n");
             builder.Append("  \"DewPointFahrenheit\": \"" + currentWeather.DewPointFahrenheit + "\"\n");
             builder.Append("  \"Wind\": \"" + currentWeather.Wind +"\"\n");

@@ -7,7 +7,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 {
     public class EnvCanadaWeatherParserTests
     {
-        [Fact(DisplayName = "ParseXML should return a CurrentWeather object if the input is empty")]
+        [Fact(DisplayName = "ParseXML should throw an exception if the input is empty")]
         public void ParseXML_shouldReturnCurrentWeatherObjectIfInputEmpty()
         {
             // Arrange
@@ -15,13 +15,12 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
 
             // Assert
-            Assert.IsType<CurrentWeather>(result);
+            Assert.Throws<UnexpectedXMLFormatException>(() => parser.ParseXML(inputXML));
         }
 
-        [Fact(DisplayName = "ParseXML should return a CurrentWeather object if the input is null")]
+        [Fact(DisplayName = "ParseXML should throw an exception if the input is null")]
         public void ParseXML_shouldReturnCurrentWeatherObjectIfInputNull()
         {
             // Arrange
@@ -29,13 +28,12 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
 
             // Assert
-            Assert.IsType<CurrentWeather>(result);
+            Assert.Throws<UnexpectedXMLFormatException>(() => parser.ParseXML(inputXML));
         }
 
-        [Fact(DisplayName = "ParseXML should return a CurrentWeather object if the input is not XML")]
+        [Fact(DisplayName = "ParseXML should throw an exception if the input is parsable XML")]
         public void ParseXML_shouldReturnCurrentWeatherObjectIfInputInvalid()
         {
             // Arrange
@@ -43,13 +41,12 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
 
             // Assert
-            Assert.IsType<CurrentWeather>(result);
+            Assert.Throws<System.Xml.XmlException>(() => parser.ParseXML(inputXML));
         }
 
-        [Fact(DisplayName = "ParseXML should return a CurrentWeather object if the XML has no child elements")]
+        [Fact(DisplayName = "ParseXML should throw an exception if the XML is XML, but doesn't have the correct format")]
         public void ParseXML_shouldReturnCurrentWeatherObjectIfOnlyBareRootElement()
         {
             // Arrange
@@ -57,13 +54,12 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
-
+            
             // Assert
-            Assert.IsType<CurrentWeather>(result);
+            Assert.Throws<UnexpectedXMLFormatException>(() => parser.ParseXML(inputXML));
         }
 
-        [Fact(DisplayName = "ParseXML should return a CurrentWeather object if the XML is completely different than expected")]
+        [Fact(DisplayName = "ParseXML should throw an exception if the XML is completely different than expected")]
         public void ParseXML_shouldReturnCurrentWeatherObjectIfXMLFormattedDifferently()
         {
             // Arrange
@@ -71,10 +67,9 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
 
             // Assert
-            Assert.IsType<CurrentWeather>(result);
+            Assert.Throws<UnexpectedXMLFormatException>(() => parser.ParseXML(inputXML));
         }
 
         [Theory(DisplayName = "ParseXML should return a CurrentWeather object with all test XML Files")]
@@ -98,7 +93,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
             Assert.IsType<CurrentWeather>(result);
         }
 
-        [Theory(DisplayName = "ParseXML should throw exception if the XML file isn't correct")]
+        [Theory(DisplayName = "ParseXML should throw an exception if you give it a warning XML file instead of a current conditions XML file")]
         [InlineData("TestXML-Warnings-001.xml")]
         public void ParseXML_shouldNotReturnCurrentWeatherObjectIfXMLDifferent(string filename)
         {
@@ -108,12 +103,53 @@ namespace MarkStrendin.EnvCanadaWeatherParser.Tests
 
             // Act
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
-            var result = parser.ParseXML(inputXML);
 
             // Assert
-            Assert.Throws<Exception>(() => parser.ParseXML(inputXML));
+            Assert.Throws<UnexpectedXMLFormatException>(() => parser.ParseXML(inputXML));
         }
 
+        [Theory(DisplayName = "CurrentWeather object returned from ParseXML should not contain \".xml\" in the location ID")]
+        [InlineData("TestXML001.xml")]
+        [InlineData("TestXML002.xml")]
+        [InlineData("TestXML003.xml")]
+        [InlineData("TestXML004.xml")]
+        [InlineData("TestXML005.xml")]
+        [InlineData("TestXML006.xml")]
+        public void ParseXML_ReturnedObjectShouldNotContainFilenameInLocationID(string filename)
+        {
+            // Arrange
+            StreamReader reader = new StreamReader("./TestXMLFiles/" + filename);
+            string inputXML = reader.ReadToEnd();
+
+            // Act
+            EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
+            CurrentWeather result = parser.ParseXML(inputXML);
+
+
+            // Assert
+            Assert.DoesNotContain(".xml", result.LocationId);
+        }
+
+        [Theory(DisplayName = "CurrentWeather object returned from ParseXML should not contain \"http://\" in the location ID")]
+        [InlineData("TestXML001.xml")]
+        [InlineData("TestXML002.xml")]
+        [InlineData("TestXML003.xml")]
+        [InlineData("TestXML004.xml")]
+        [InlineData("TestXML005.xml")]
+        [InlineData("TestXML006.xml")]
+        public void ParseXML_ReturnedObjectShouldNotContainHTTPInLocationID(string filename)
+        {
+            // Arrange
+            StreamReader reader = new StreamReader("./TestXMLFiles/" + filename);
+            string inputXML = reader.ReadToEnd();
+
+            // Act
+            EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
+            CurrentWeather result = parser.ParseXML(inputXML);
+            
+            // Assert
+            Assert.DoesNotContain("http://", result.LocationId);
+        }
 
     }
 }

@@ -9,10 +9,23 @@ namespace MarkStrendin.EnvCanadaWeatherParser
     {
 
         private const string _locationTitleFluff = " - Weather - Environment Canada";
+        private const string _urlFluff = "https://www.weather.gc.ca/rss/city/";
         private static readonly string[] _removeFromURLToCreateLocalID = new string[] { "" };
 
         public CurrentWeather ParseXML(string inputXML)
         {
+            if (inputXML == null)
+            {
+                throw new UnexpectedXMLFormatException("XML input is null");
+            }
+
+            if (string.IsNullOrEmpty(inputXML))
+            {
+                throw new UnexpectedXMLFormatException("XML input is empty");
+            }
+
+            int fieldsWithFoundValues = 0;
+
             XDocument doc = XDocument.Parse(inputXML);
             CurrentWeather returnMe = new CurrentWeather();
             foreach (XElement rootElement in doc.Elements())
@@ -27,6 +40,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                             if (firstLevelElement.Value.Contains(_locationTitleFluff))
                             {
                                 returnMe.LocationName = parseLocationTitle(firstLevelElement.Value);
+                                fieldsWithFoundValues++;
                             }
                         }
                     }
@@ -40,8 +54,15 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                             {
                                 if (attribute.Name.LocalName == "href")
                                 {
-                                    returnMe.SourceURL = attribute.Value;
-                                    returnMe.LocationId = parseLocalIDFromSourceURL(attribute.Value);
+                                    if (attribute.Value.Contains(_urlFluff))
+                                    {                                        
+                                        returnMe.SourceURL = attribute.Value;
+                                        returnMe.LocationId = parseLocalIDFromSourceURL(attribute.Value);
+                                        fieldsWithFoundValues++;
+                                    } else
+                                    {
+                                        throw new UnexpectedXMLFormatException("Incorrect XML format - self ref was \"" + attribute.Value + "\", but expected \"" + _urlFluff + "...\"");
+                                    }
                                 }
                             }
                         }
@@ -61,6 +82,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                                     if (parsedValue > DateTime.MinValue)
                                     {
                                         returnMe.LastUpdated = parsedValue;
+                                        fieldsWithFoundValues++;
                                     }
                                 }
 
@@ -72,46 +94,93 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                                     {
                                         if (currentConditionsElement.StartsWith("<b>Condition:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.Conditions = currentConditionsElement.Replace("<b>Condition:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Temperature:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.TemperatureCelsius = currentConditionsElement.Replace("<b>Temperature:</b>", string.Empty).Replace("&deg;C", string.Empty).Trim();
+                                            
+                                            // Also calculate Fahrenheit conversion
+                                            string tempF = "unknown";
+                                            if (decimal.TryParse(returnMe.TemperatureCelsius, out decimal celsiusDecimal))
+                                            {
+                                                tempF = ((celsiusDecimal * 9) / 5 + 32).ToString();
+                                            }
+                                            returnMe.TemperatureFahrenheit = tempF;
+
+                                            // Also calculate Kelvin, just for kicks
+                                            returnMe.TemperatureKelvin = (celsiusDecimal + (decimal)273.15).ToString();
+                                        }
+
+                                        if (currentConditionsElement.StartsWith("<b>Pressure / Tendency:</b>"))
+                                        {
+                                            fieldsWithFoundValues++;
+                                            returnMe.Pressure = currentConditionsElement.Replace("<b>Pressure / Tendency:</b>", string.Empty).Trim();
+                                        }
+
+                                        if (currentConditionsElement.StartsWith("<b>Wind Chill:</b>"))
+                                        {
+                                            fieldsWithFoundValues++;
+                                            returnMe.WindChillCelsius = currentConditionsElement.Replace("<b>Wind Chill:</b>", string.Empty).Trim();
+                                            // Also calculate Fahrenheit conversion
+                                            string windF = "unknown";
+                                            if (decimal.TryParse(returnMe.WindChillCelsius, out decimal celsiusDecimal))
+                                            {
+                                                windF = ((celsiusDecimal * 9) / 5 + 32).ToString();
+                                            }
+                                            returnMe.WindChillFahrenheit = windF;
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Pressure:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.Pressure = currentConditionsElement.Replace("<b>Pressure:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Visibility:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.Visibility = currentConditionsElement.Replace("<b>Visibility:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Humidity:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.Humidity = currentConditionsElement.Replace("<b>Humidity:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Dewpoint:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.DewPointCelsius = currentConditionsElement.Replace("<b>Dewpoint:</b>", string.Empty).Replace("&deg;C", string.Empty).Trim();
+
+                                            // Also calculate Fahrenheit conversion
+                                            string dewPointF = "unknown";
+                                            if (decimal.TryParse(returnMe.DewPointCelsius, out decimal celsiusDecimal))
+                                            {
+                                                dewPointF = ((celsiusDecimal * 9) / 5 + 32).ToString();
+                                            }
+                                            returnMe.DewPointFahrenheit = dewPointF;
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Wind:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.Wind = currentConditionsElement.Replace("<b>Wind:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Air Quality Health Index:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.AirQualityHealthIndex = currentConditionsElement.Replace("<b>Air Quality Health Index:</b>", string.Empty).Trim();
                                         }
 
                                         if (currentConditionsElement.StartsWith("<b>Observed at:</b>"))
                                         {
+                                            fieldsWithFoundValues++;
                                             returnMe.ObservedAt = currentConditionsElement.Replace("<b>Observed at:</b>", string.Empty).Trim();
                                         }
                                     }
@@ -123,6 +192,12 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                     }
                 }
             }
+
+            if (fieldsWithFoundValues < 2)
+            {
+                throw new UnexpectedXMLFormatException("XML file did not contain enough valid data (is it the correct XML file?)");
+            }
+
             return returnMe;
         }
 
@@ -140,7 +215,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser
 
         private static string parseLocalIDFromSourceURL(string input)
         {
-            return input.Replace("https://www.weather.gc.ca/rss/city/", string.Empty).Replace("_e.xml", string.Empty).Replace("_f.xml", string.Empty);
+            return input.Replace(_urlFluff, string.Empty).Replace("_e.xml", string.Empty).Replace("_f.xml", string.Empty);
         }
 
 
