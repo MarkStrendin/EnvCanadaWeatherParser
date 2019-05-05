@@ -8,6 +8,9 @@ namespace MarkStrendin.EnvCanadaWeatherParser
     public class EnvCanadaCurrentWeatherParser
     {
 
+        private const string _locationTitleFluff = " - Weather - Environment Canada";
+        private static readonly string[] _removeFromURLToCreateLocalID = new string[] { "" };
+
         public CurrentWeather ParseXML(string inputXML)
         {
             XDocument doc = XDocument.Parse(inputXML);
@@ -21,7 +24,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                     {
                         if (string.IsNullOrEmpty(returnMe.LocationName))
                         {
-                            if (firstLevelElement.Value.Contains(" - Weather - Environment Canada"))
+                            if (firstLevelElement.Value.Contains(_locationTitleFluff))
                             {
                                 returnMe.LocationName = parseLocationTitle(firstLevelElement.Value);
                             }
@@ -38,8 +41,7 @@ namespace MarkStrendin.EnvCanadaWeatherParser
                                 if (attribute.Name.LocalName == "href")
                                 {
                                     returnMe.SourceURL = attribute.Value;
-
-                                    returnMe.LocationId = attribute.Value.Replace("https://www.weather.gc.ca/rss/city/", string.Empty).Replace("_e.xml", string.Empty).Replace("_f.xml", string.Empty);
+                                    returnMe.LocationId = parseLocalIDFromSourceURL(attribute.Value);
                                 }
                             }
                         }
@@ -126,14 +128,22 @@ namespace MarkStrendin.EnvCanadaWeatherParser
 
         private static string parseLocationTitle(string title)
         {
-            if (title.Contains(" - Weather - Environment Canada"))
+            if (title.Contains(_locationTitleFluff))
             {
-                return title.Substring(0, title.IndexOf(" - Weather - Environment Canada")).Trim();
+                return title.Substring(0, title.IndexOf(_locationTitleFluff)).Trim();
             }
             else
             {
                 return string.Empty;
             }
         }
+
+        private static string parseLocalIDFromSourceURL(string input)
+        {
+            return input.Replace("https://www.weather.gc.ca/rss/city/", string.Empty).Replace("_e.xml", string.Empty).Replace("_f.xml", string.Empty);
+        }
+
+
+
     }
 }
