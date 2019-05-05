@@ -1,5 +1,6 @@
 ﻿using MarkStrendin.EnvCanadaWeatherParser;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -9,17 +10,28 @@ namespace MarkStrendin.EnvCanadaParserPlayground
     {
         static void Main(string[] args)
         {
+            List<string> filenames = new List<string>()
+            {
+                "TestXML001.xml",
+                "TestXML002.xml",
+                "TestXML003.xml",
+                "TestXML004.xml",
+                "TestXML005.xml",
+                "TestXML006.xml",
+                "TestXML-Warnings-001.xml"
+            };
+
             EnvCanadaCurrentWeatherParser parser = new EnvCanadaCurrentWeatherParser();
 
-            // Read in the example file
-            StreamReader reader = new StreamReader("./example_data.xml");
-            string exampleContent = reader.ReadToEnd();
+            foreach(string filename in filenames)
+            {
+                StreamReader reader = new StreamReader("./TestXMLFiles/" + filename);
+                string exampleContent = reader.ReadToEnd();
+                CurrentWeather result = parser.ParseXML(exampleContent);
+                Console.WriteLine(CurrentWeatherToString(result));
+            }
 
-            // Run it through the parser
-            CurrentWeather result = parser.ParseXML(exampleContent);
-
-            // Send the results to the console
-            Console.WriteLine(CurrentWeatherToString(result));                        
+            
         }
 
 
