@@ -21,6 +21,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestXMLFiles\TestXML-French-01.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestXMLFiles\TestXML-French-02.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestXMLFiles\TestXML-French-03.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestXMLFiles\TestXML-French-04.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestXMLFiles\TestXML-French-05.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestXMLFiles\TestXML001.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
