@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr-ca">
+
+  <!--
+Ce fichier contient des données destinées aux lecteurs ou agrégateurs RSS.
+Pour en apprendre davantage au sujet du service RSS, veuillez vous rendre à https://www.canada.ca/fr/environnement-changement-climatique/services/conditions-meteorologiques-ressources-outils-generaux/facon-acceder-previsions.html
+-->
+
+  <title>Kitchener-Waterloo - Météo - Environnement Canada</title>
+  <link rel="related" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html" type="text/html"/>
+  <link rel="self" href="https://www.meteo.gc.ca/rss/city/on-82_f.xml" type="application/atom+xml"/>
+  <link rel="alternate" hreflang="en-ca" href="https://www.weather.gc.ca/rss/city/on-82_e.xml" type="application/atom+xml"/>
+  <author>
+    <name>Environnement Canada</name>
+    <uri>https://www.meteo.gc.ca</uri>
+  </author>
+  <updated>2019-05-07T01:22:02Z</updated>
+  <id>tag:meteo.gc.ca,2013-04-16:20190507012202</id>
+  <logo>https://www.meteo.gc.ca/template/gcweb/v4.0.24/assets/wmms-alt.png</logo>
+  <icon>https://www.meteo.gc.ca/template/gcweb/v4.0.24/assets/favicon.ico</icon>
+  <rights>Droit d'auteur 2019, Environnement Canada</rights>
+  <entry>
+    <title>Aucune veille ou alerte en vigueur, Kitchener-Waterloo</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/warnings/index_f.html"/>
+    <updated>2019-05-05T13:15:00Z</updated>
+    <published>2019-05-05T13:15:00Z</published>
+    <category term="Veilles et avertissements"/>
+    <summary type="html">Aucune veille ou alerte en vigueur.</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_w1:20190505131500</id>
+  </entry>
+  <entry>
+    <title>Conditions actuelles: Nuageux, 13,5&#xB0;C</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-07T01:21:00Z</updated>
+    <published>2019-05-07T01:21:00Z</published>
+    <category term="Conditions actuelles"/>
+    <summary type="html">
+      <![CDATA[<b>Enregistrées à:</b> Aéroport int. de la Région de Waterloo 21h21 HAE lundi 06 mai 2019 <br/>
+<b>Condition:</b> Nuageux <br/>
+<b>Température:</b> 13,5&deg;C <br/>
+<b>Pression:</b> 101,7 kPa <br/>
+<b>Visibilité:</b> 16,1 km<br/>
+<b>Humidité:</b> 84 %<br/>
+<b>Point de rosée:</b> 10,9&deg;C <br/>
+<b>Vent:</b>  0 km/h<br/>
+<b>Cote air santé:</b> N,D. <br/>
+]]>
+    </summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_cc:20190507012100</id>
+  </entry>
+  <entry>
+    <title>Ce soir et cette nuit: Averses. Minimum 6.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Généralement nuageux. 60 pour cent de probabilité d'averses tôt ce soir. Averses débutant tôt ce soir. Risque d'un orage tôt ce soir. Vents du sud-ouest de 20 km/h devenant légers ce soir. Minimum 6. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc1:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Mardi: Possibilité d'averses. Maximum 14. PdP 60%</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Généralement nuageux avec 60 pour cent de probabilité d'averses le matin. Dégagement tard en après-midi. Vents devenant du nord-ouest à 20 km/h en après-midi. Maximum 14. Indice UV de 6 ou élevé. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc2:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Mardi soir et nuit: Dégagé. Minimum zéro avec gel par endroits.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Dégagé. Vents du nord de 20 km/h. Minimum zéro avec gel par endroits. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc3:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Mercredi: Nuageux. Maximum 10.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Nuageux. Maximum 10. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc4:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Mercredi soir et nuit: Pluie intermittente. Minimum 7. PdP 70%</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Nuageux avec 70 pour cent de probabilité de pluie. Minimum 7. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc5:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Jeudi: Pluie intermittente. Maximum 14.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Pluie intermittente. Maximum 14. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc6:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Jeudi soir et nuit: Pluie intermittente. Minimum 13.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Pluie intermittente. Minimum 13. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc7:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Vendredi: Pluie intermittente. Maximum 14. PdP 40%</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Nuageux avec 40 pour cent de probabilité de pluie. Maximum 14. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc8:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Vendredi soir et nuit: Dégagé. Minimum plus 3.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Dégagé. Minimum plus 3. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc9:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Samedi: Ensoleillé. Maximum 16.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Ensoleillé. Maximum 16. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc10:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Samedi soir et nuit: Dégagé. Minimum 6.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Dégagé. Minimum 6. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc11:20190506193000</id>
+  </entry>
+  <entry>
+    <title>Dimanche: Nuageux. Maximum 14.</title>
+    <link type="text/html" href="https://www.meteo.gc.ca/city/pages/on-82_metric_f.html"/>
+    <updated>2019-05-06T19:30:00Z</updated>
+    <published>2019-05-06T19:30:00Z</published>
+    <category term="Prévisions météo"/>
+    <summary type="html">Nuageux. Maximum 14. Prévisions émises 15h30 HAE lundi 06 mai 2019</summary>
+    <id>tag:meteo.gc.ca,2013-04-16:on-82_fc12:20190506193000</id>
+  </entry>
+</feed>
+
