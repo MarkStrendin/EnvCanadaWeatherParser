@@ -22,5 +22,35 @@ namespace MarkStrendin.EnvCanadaWeatherParser
         public string SourceURL { get; set; }
         public string WindChillCelsius { get; set; }
         public string WindChillFahrenheit { get; set; }
+
+        public string TemperatureCelsiusWithWindChill
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.WindChillCelsius))
+                {
+                    return this.WindChillCelsius;
+                }
+                else
+                {
+                    return this.TemperatureCelsius;
+                }
+            }
+        }
+
+        public string TemperatureFahrenheitWithWindChill
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.WindChillFahrenheit))
+                {
+                    return this.WindChillFahrenheit;
+                }
+                else
+                {
+                    return this.TemperatureFahrenheit;
+                }
+            }
+        }
     }
 }
